@@ -1,6 +1,16 @@
 language: node_js
 before_script:
-    - npm install -g gulp
+- npm install -g gulp
 script: gulp rebuild
 notifications:
-    email: false
+  email: false
+deploy:
+  provider: releases
+  api_key:
+    secure: HbhRuxGyWLOuf5qteZICO8pb0cY9e3fLDgrNbjhGXwvWt6P5i4JaDPf5qVejR5H+tcQFaLfU7frjTdUX66bLiM5uyovosZq08BZfEHqtbYqcAkOkDqUpwpKYghQ70mcuFDNyQlLA7+d8QQMLmmg8Ios4tZSjkkky2ivn+2P5tq5FMpTizxArV1k+hbu40CT/OflzB4SdX+5zlmcjRfzjbpyZjuvU4/DSdGSLJlsCQtgqopYKV00M7fvLskSfaFax3KuLbx7ouEtm8wKlEFGtPEv9K+Jj06cr7MOwj72UFkcJkjIOIEwgYLGV4XjjfmRAErjAxTp7Hdc8qQfAS31JolY8ll6PvRQDkhq7HGFW08PqMSMmQ0O34VUAiOCi/uX9b0CZevOZDapkKUp0SbOY+W69wzayyD6kNcZw0D3jGOwi7sq4+gqIarTL+ZuSzjO93YgPGwfF9Nj9YgRFwHVaDPwByO2OuHmTXec8E6qtjfbm3V8yqWtg1AGhuSAuxTVZGgzYjB/aEPvrS0VyLGaCe8pgxcrmxBU4YM5+X4n64tfwjYZBfo7SjESPk/TOQO0Tw6uUZs8VhS+dbWZz7lDrgMLE1A9h5n4BqeU4CsgBo2b+3Fh80w7ePUpCF5iigfCNkcoE7yAVgA46ZCQIrosEPwlt+EkFZhs6dAHZTe2jKjA=
+  skip_cleanup: true
+  file:     
+    - bin/typeQuery.zip
+  on:
+    repo: c1phr/typeQuery
+    branch: release
