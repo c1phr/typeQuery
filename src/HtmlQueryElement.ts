@@ -18,11 +18,17 @@ export class HtmlQueryElement {
 
     public constructor(el: string);
     public constructor(el: HTMLElement);
+    public constructor(el: HTMLElement[]);
     public constructor(el: Element);
+    public constructor(el: Element[]);
     public constructor(el: any) {
-        this.internalElArray = [];
+        this.internalElArray = [];        
         if (el instanceof HTMLElement) {
             this.internalEl = el;
+        } else if (el instanceof Array) {
+            for (var j = 0; j < el.length; j++) {
+                this.internalElArray.push(new HtmlQueryElement(el[j]));
+            }
         } else {
             if (typeof el === "string") { // Determine which selector to use for minor performance
                 if (el.indexOf("#") === 0 && el.indexOf(" ") < 0) {
@@ -67,6 +73,31 @@ export class HtmlQueryElement {
             return this.internalElArray[index];
         }
         return null;
+    }
+
+    public querySelector(selector: string): HtmlQueryElement {
+        if (this.multiElement()) {
+            var newElArray: Element[];
+            this.internalElArray.forEach(element => {
+                newElArray.push(element.internalEl.querySelector(selector));
+            });
+            return new HtmlQueryElement(newElArray);
+        } else {
+            return new HtmlQueryElement(this.internalEl.querySelector(selector));
+        }
+    }
+
+    public querySelectorAll(selector: string): HtmlQueryElement {
+        if (this.multiElement()) {
+            var newElArray: Element[];
+            this.internalElArray.forEach(element => {
+                var selectedElems = element.internalEl.querySelectorAll(selector);
+                newElArray.concat(Array.prototype.slice.call(selectedElems)); // Work around querySelectorAll returning a NodeListOf<Element> instead of an array
+            });            
+        } else {
+            newElArray = Array.prototype.slice.call(this.internalEl.querySelectorAll(selector));
+        }
+        return new HtmlQueryElement(newElArray);
     }
 
     // CssLib
