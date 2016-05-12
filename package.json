@@ -1,0 +1,31 @@
+{
+  "name": "typequery",
+  "version": "1.0.0",
+  "description": "Common jQuery functions implemented in TypeScript for better performance and composability",
+  "main": "./dist/HtmlQueryElement.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/c1phr/typeQuery.git"
+  },
+  "keywords": [
+    "jquery",
+    "typescript",
+    "typequery"
+  ],
+  "author": "Ryan Batchelder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/c1phr/typeQuery/issues"
+  },
+  "homepage": "https://github.com/c1phr/typeQuery#readme",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-typescript": "^2.13.4",
+    "gulp-uglify": "^1.5.3"
+  }
+}

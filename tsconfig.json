@@ -1,0 +1,16 @@
+{
+    "files": [
+        "src/AjaxLib.ts",
+        "src/AnimationsLib.ts",
+        "src/CssLib.ts",
+        "src/ElementLib.ts",
+        "src/EventsLib.ts",
+        "src/HtmlQueryElement.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": false,
+        "target": "es5",
+        "module": "amd",
+        "sourceMap": true
+    }
+}
