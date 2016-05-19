@@ -88,23 +88,27 @@ export function getJson(url: string, success: Function = null, fail: Function = 
     return deferred;
 } 
 
-export function getQueryString(obj) {
-    if (!obj)
+export function getQueryString(data) {
+    if (typeof(data) == "string") {
+        return data;
+    } else if (typeof(data) == "object") {
+        var keys = Object.keys(data);
+        var arr = [];
+        keys.forEach((key, index) => {
+            arr.push(key + "=");
+            arr.push(data[key]);
+            if (index != (keys.length - 1))
+                arr.push("&");
+        });
+        return arr.join('');
+    } else {
         return "";
-    var keys = Object.keys(obj);
-    var arr = ['?'];
-    keys.forEach((key, index) => {
-        arr.push(key + "=");
-        arr.push(obj[key]);
-        if (index != (keys.length - 1))
-            arr.push("&");
-    });
-    return arr.join('');
+    }
 }
 
 export function ajaxGet(url: string, data = null, success: Function = null, fail: Function = null) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", url + getQueryString(data));
+    xhr.open("GET", url + "?" + getQueryString(data));
     var deferred = new DeferredAjax(xhr).success((response) => {
         return response;
     });
