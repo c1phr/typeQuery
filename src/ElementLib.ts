@@ -108,6 +108,19 @@ export class ElementLib {
         return inputEl.value;
     } 
 
+    public static text(el: Element, newText?: string): string;
+    public static text(el: string, newText?: string): string;
+    public static text(el: any, newText?: string): string {
+        var htmlEl = <HTMLElement>ElementLib.selectHtmlElement(el);
+        if (htmlEl === undefined) {
+            return undefined;
+        }
+        if (newText !== undefined) {
+            htmlEl.textContent = newText;
+        }
+        return htmlEl.textContent;
+    }
+
     public static addEventListener(el: Element, event: string, cb: Function): void;
     public static addEventListener(el: string, event: string, cb: Function): void;
     public static addEventListener(el: any, event: string, cb: Function): void {

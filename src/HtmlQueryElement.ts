@@ -121,6 +121,10 @@ export class HtmlQueryElement {
         return ElementLib.val(this.internalEl, newVal);
     }
 
+    public text(newText?: string): string {
+        return ElementLib.text(this.internalEl, newText);
+    }
+
     public addEventListener(event: string, cb: Function) {
         return this.invoke(ElementLib.addEventListener, event, cb);
     }
